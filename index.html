@@ -614,16 +614,21 @@ function closeLoginModal(){
   document.getElementById("login-modal").classList.remove("open");
 }
 function attemptLogin(){
-  const pw = document.getElementById("pw-input").value;
+  const pw = document.getElementById("pw-input").value.trim();
 
   if(pw === ADMIN_PASSWORD){
     IS_ADMIN = true;
-    closeLoginModal();
+
+    // ✅ FIXED FUNCTION CALL
+    closeModal("login-modal");
+
     applyAdminUI();
     showToast("✓ Admin mode unlocked");
+
   } else {
-    document.getElementById("pw-err").textContent = "Incorrect password.";
+    document.getElementById("pw-err").textContent = "❌ Wrong password";
     document.getElementById("pw-input").value = "";
+    document.getElementById("pw-input").focus();
   }
 }
 function adminLogout(){
