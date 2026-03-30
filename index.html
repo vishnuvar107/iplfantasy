@@ -604,7 +604,15 @@ function saveConfig(){
 }
 
 /* ═══ ADMIN AUTH ═══ */
-function openLoginModal(){document.getElementById("pw-input").value="";document.getElementById("pw-err").textContent="";document.getElementById("login-modal").classList.add("open");setTimeout(()=>document.getElementById("pw-input").focus(),120)}
+function openLoginModal(){
+  document.getElementById("pw-input").value="";
+  document.getElementById("pw-err").textContent="";
+  document.getElementById("login-modal").classList.add("open");
+  setTimeout(()=>document.getElementById("pw-input").focus(),120);
+}
+function closeLoginModal(){
+  document.getElementById("login-modal").classList.remove("open");
+}
 function attemptLogin(){
   const pw = document.getElementById("pw-input").value;
 
@@ -618,6 +626,22 @@ function attemptLogin(){
     document.getElementById("pw-input").value = "";
   }
 }
+function adminLogout(){
+  IS_ADMIN=false;
+  applyAdminUI();
+  showToast("Signed out of admin");
+}
+function applyAdminUI(){
+  document.getElementById("admin-section").style.display = IS_ADMIN?"block":"none";
+  document.getElementById("ro-banner").style.display      = IS_ADMIN?"none":"flex";
+  document.getElementById("admin-btn").style.display      = IS_ADMIN?"none":"inline-block";
+  document.getElementById("logout-btn").style.display     = IS_ADMIN?"inline-block":"none";
+  // re-render so edit buttons show/hide
+  renderLeaderboard();
+  renderMatches();
+  if(IS_ADMIN){ renderScoreGrid(); suggestMatchId(); }
+}
+
 
 /* ═══ RENDER ALL ═══ */
 function renderAll(){renderLeaderboard();renderMatches();if(IS_ADMIN){renderScoreGrid();suggestMatchId()}}
