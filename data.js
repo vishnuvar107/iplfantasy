@@ -1,0 +1,61 @@
+/**
+ * ╔══════════════════════════════════════════════════════════╗
+ * ║                   LEADERBOARD DATA                       ║
+ * ║──────────────────────────────────────────────────────────║
+ * ║  This is the ONLY file you need to edit.                 ║
+ * ║                                                          ║
+ * ║  HOW TO ADD A MATCH:                                     ║
+ * ║  1. Add a new object to the MATCHES array below.         ║
+ * ║  2. Set id (display name), date (YYYY-MM-DD).            ║
+ * ║  3. In results[], list each player who played,           ║
+ * ║     with their score (integers or decimals both work).   ║
+ * ║  4. Save the file and reload index.html in your browser. ║
+ * ║                                                          ║
+ * ║  WINS are determined automatically:                      ║
+ * ║  The player with the highest score in each match wins.   ║
+ * ║  Ties → all tied players are counted as winners.         ║
+ * ╚══════════════════════════════════════════════════════════╝
+ */
+
+// ── Fixed player roster ─────────────────────────────────────
+// Add or remove names here to change the roster.
+// Players not in this list but present in match results
+// will still appear in the leaderboard.
+const PLAYERS = [
+  "Muscleman",
+  "Baniya",
+  "Mutheri",
+  "AlluArjun",
+  "Spammer",
+  "Fluker",
+  "Bengali",
+  "Kalu"
+];
+
+// ── Match data ───────────────────────────────────────────────
+// Each match: { id, date, results: [{ player, score }, ...] }
+// Not every player needs to appear in every match.
+const MATCHES = [
+  {
+  id: "RCB vs SRH",
+  date: "2026-03-28",
+  results: [
+    { player: "Muscleman", score: 1020 },
+    { player: "Baniya", score: 906 },
+    { player: "AlluArjun", score: 788.5 },
+    { player: "Spammer", score: 896.5 },
+    { player: "Fluker", score: 110 },
+    { player: "Bengali", score: 737.5 }
+  ]
+}
+  // ── To add a new match, copy the block below and fill it in:
+  // ,{
+  //   id: "Match 07",
+  //   date: "2025-04-06",
+  //   results: [
+  //     { player: "Sneha Iyer",   score: 240   },
+  //     { player: "Arjun Mehta",  score: 220   },
+  //     { player: "Divya Pillai", score: 198   }
+  //   ]
+  // }
+];
