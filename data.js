@@ -89,7 +89,7 @@ const MATCHES = [
       { player: "Fluker", score: 654.5 },
       { player: "Bengali", score: 625.5 }
     ]
-  }
+  },
 
   {
     id: "LSG vs DC",
