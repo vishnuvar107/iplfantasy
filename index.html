@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Game Leaderboard</title>
+  <title>ABUSERS 11</title>
 
   <!--
     ┌─────────────────────────────────────────────────────┐
@@ -16,7 +16,7 @@
     After editing data.js, just reload the page (F5).
   -->
 
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Syne+Mono&family=Literata:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
 
   <style>
     /* ══════════════════════════════════════════════════
@@ -27,35 +27,34 @@
     ══════════════════════════════════════════════════ */
 
     :root {
-      /* Palette */
-      --ink:       #12100e;
-      --ink-2:     #2c2926;
-      --ink-3:     #4a4540;
-      --dust:      #7a7268;
-      --rule:      #d4cfc8;
-      --rule-2:    #e8e3dc;
-      --paper:     #f5f0e8;
-      --paper-2:   #faf7f2;
-      --cream:     #fff9f0;
+  /* Dark Theme */
+  --ink:       #f5f5f5;
+  --ink-2:     #d1d1d1;
+  --ink-3:     #a1a1a1;
+  --dust:      #8a8a8a;
+  --rule:      #2a2a2a;
+  --rule-2:    #1f1f1f;
+  --paper:     #0e0e0e;
+  --paper-2:   #151515;
+  --cream:     #121212;
 
-      /* Accents */
-      --red:       #c0392b;
-      --red-dim:   rgba(192,57,43,.08);
-      --gold:      #b5860d;
-      --gold-dim:  rgba(181,134,13,.10);
-      --green:     #1a6b3c;
-      --green-dim: rgba(26,107,60,.08);
+  /* Accents (brighter for dark) */
+  --red:       #ff5c5c;
+  --red-dim:   rgba(255,92,92,.15);
+  --gold:      #f4c430;
+  --gold-dim:  rgba(244,196,48,.15);
+  --green:     #4ade80;
+  --green-dim: rgba(74,222,128,.15);
 
-      /* Medal colours */
-      --medal-1: #b5860d;
-      --medal-2: #6b7280;
-      --medal-3: #8b5e3c;
+  --medal-1: #f4c430;
+  --medal-2: #9ca3af;
+  --medal-3: #d97706;
 
-      /* Type */
-      --ff-display: 'Syne', sans-serif;
-      --ff-mono:    'Syne Mono', monospace;
-      --ff-body:    'Literata', serif;
-    }
+  /* NEW FONT (Deuce style alternative) */
+  --ff-display: 'Bebas Neue', sans-serif;
+  --ff-mono:    'JetBrains Mono', monospace;
+  --ff-body:    'Inter', sans-serif;
+}
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -196,11 +195,12 @@
        MAIN LEADERBOARD TABLE
     ══════════════════════════════════════════════════ */
     .lb-wrap {
-      background: var(--cream);
-      border: 1px solid var(--rule);
-      border-radius: 4px;
-      overflow: hidden;
-      box-shadow: 0 2px 0 var(--rule), 0 8px 40px rgba(18,16,14,.06);
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow-x: auto;
+  overflow-y: hidden;
+      box-shadow: 0 0 0 1px var(--rule), 0 10px 30px rgba(0,0,0,0.6);
     }
 
     .lb-table {
@@ -312,16 +312,36 @@
 
     /* Win rate pill */
     .wr-pill {
-      display: inline-block;
-      font-family: var(--ff-mono);
-      font-size: .68rem;
-      padding: 3px 9px;
-      border-radius: 2px;
-      font-weight: 400;
-    }
-    .wr-hi  { background: var(--green-dim); color: var(--green); }
-    .wr-mid { background: var(--gold-dim);  color: var(--gold);  }
-    .wr-lo  { background: var(--red-dim);   color: var(--red);   }
+  display: inline-block;
+  font-family: var(--ff-mono);
+  font-size: .7rem;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-shadow: 0 0 6px rgba(255,255,255,0.15);
+}
+
+/* High */
+.wr-hi {
+  background: linear-gradient(135deg, #22c55e, #4ade80);
+  color: #022c22;
+  text-shadow: 0 0 8px rgba(74,222,128,.6);
+}
+
+/* Medium */
+.wr-mid {
+  background: linear-gradient(135deg, #facc15, #fbbf24);
+  color: #422006;
+  text-shadow: 0 0 8px rgba(250,204,21,.6);
+}
+
+/* Low */
+.wr-lo {
+  background: linear-gradient(135deg, #ef4444, #f87171);
+  color: #3b0a0a;
+  text-shadow: 0 0 8px rgba(248,113,113,.6);
+}
 
     /* Summary footer */
     .lb-footer {
@@ -548,7 +568,18 @@
     .match-card:nth-child(4)  { animation-delay: .18s }
     .match-card:nth-child(5)  { animation-delay: .22s }
     .match-card:nth-child(6)  { animation-delay: .26s }
+    
+    /* Fix leaderboard overflow on mobile */
+.lb-wrap {
+  overflow-x: auto;
+}
 
+/* Make table scrollable instead of breaking layout */
+@media (max-width: 700px) {
+  .lb-table {
+    min-width: 720px;
+  }
+}
     /* ── Responsive ── */
     @media (max-width: 700px) {
       .page-wrap { padding: 0 16px 80px; }
@@ -558,6 +589,21 @@
       .lb-table th:nth-child(3),
       .lb-table td:nth-child(3) { display: none; } /* hide Played on mobile */
     }
+@media (max-width: 500px) {
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  .lb-avatar {
+    width: 28px;
+    height: 28px;
+    font-size: .6rem;
+  }
+
+  .lb-name {
+    font-size: .8rem;
+  }
+}
   </style>
 </head>
 <body>
