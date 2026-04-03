@@ -400,20 +400,20 @@ tr.top-3 {
   color: #1f2937;
 }
     .lb-fstat {
-      flex: 1;
-      padding: 16px 20px;
-      border-right: none;
+  flex: 1;
+  padding: 16px 20px;
+  border-right: 1px solid rgba(0,0,0,0.1); /* add separator */
       border-bottom: 1px solid rgba(0,0,0,0.1);
     }
     .lb-fstat:last-child { border-right: none; }
     .lb-fstat-label {
-      font-family: var(--ff-mono);
-      font-size: .54rem;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: rgba(255,249,240,.35);
-      margin-bottom: 3px;
-    }
+  font-family: var(--ff-mono);
+  font-size: .6rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+
+  color: rgba(0,0,0,0.55); /* ✅ dark visible */
+}
     .lb-fstat-val {
   font-family: var(--ff-display);
   font-size: 1.3rem;
@@ -672,6 +672,7 @@ tr.top-3 {
   .lb-table td:nth-child(3),
   .lb-table th:nth-child(7),
   .lb-table td:nth-child(7) {
+    width: 30%;
     display: none;
   }
 }
