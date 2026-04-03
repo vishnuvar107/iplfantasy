@@ -104,7 +104,9 @@ const MATCHES = [
       { player: "Bengali", score: 559 }
     ]
   }
-  ,{
+  ,
+  
+  {
   id: "KKR vs SRH",
   date: "2026-04-02",
   results: [
