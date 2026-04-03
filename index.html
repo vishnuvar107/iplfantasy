@@ -16,7 +16,7 @@
     After editing data.js, just reload the page (F5).
   -->
 
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@300;400;500;700&family=Lato:wght@300;400;700&family=Yellowtail&display=swap" rel="stylesheet">
 
   <style>
     /* ══════════════════════════════════════════════════
@@ -52,9 +52,9 @@
   --gold-dim: rgba(251,191,36,0.15);
 
   /* Fonts */
-  --ff-display: 'Space Grotesk', sans-serif;
-  --ff-body: 'Inter', sans-serif;
-  --ff-mono: 'JetBrains Mono', monospace;
+  --ff-display: 'Lato', sans-serif;
+--ff-body: 'Alegreya Sans', sans-serif;
+--ff-accent: 'Yellowtail', cursive;
 }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -69,7 +69,7 @@
     
   font-family: var(--ff-body);
   font-size: 17px;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
 }
 
     /* ── Page chrome ── */
@@ -135,13 +135,18 @@
       display: inline-block;
       width: 18px;
       height: 2px;
-      background: var(--red);
+      background: var(--turquoise);
     }
     h1 {
-  font-family: var(--ff-display);
-  font-size: clamp(3.5rem, 7vw, 6rem);
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-family: var(--ff-accent);
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+
+  color: var(--turquoise);
+
+  text-shadow: 0 0 30px rgba(6,182,212,0.4);
+}
 
   background: linear-gradient(90deg, #e2e8f0, #38bdf8);
   -webkit-background-clip: text;
@@ -225,17 +230,18 @@
 }
 
   .lb-table thead tr {
-  background: linear-gradient(90deg, #1e293b, #0f172a);
-  color: #94a3b8;
-  font-size: 0.75rem;
+  background: linear-gradient(90deg, #0f172a, #020617);
+}
+
+.lb-table th {
+  font-family: var(--ff-body);
+  font-size: 0.7rem;
   letter-spacing: 0.15em;
-  text-transform: uppercase;
+  color: var(--ink-2);
 }
 
     /* Header row */
-    .lb-table thead tr {
-      background: var(--ink);
-    }
+    
     .lb-table th {
       font-family: var(--ff-mono);
       font-size: .6rem;
@@ -262,7 +268,7 @@
     .lb-table tbody tr:last-child { border-bottom: none; }
 
     .lb-table td {
-  padding: 14px 10px;
+  padding: 16px 14px;
   font-size: 0.95rem;
 }
     .lb-table td.r {
@@ -329,12 +335,13 @@ tr.top-3 {
       letter-spacing: .02em;
       flex-shrink: 0;
     }
-    .lb-name {
+   .lb-name {
   font-family: var(--ff-display);
-  font-size: 1.05rem; /* increased */
-  font-weight: 500;   /* less heavy */
-  letter-spacing: 0.03em;
-  color: var(--ink);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+
+  color: #fffff0; /* ivory */
 }
 
     /* Points highlight */
@@ -394,10 +401,18 @@ tr.top-3 {
 
     /* Summary footer */
     .lb-footer {
-      display: flex;
-      border-top: 2px solid var(--ink);
-      background: var(--ink);
-    }
+  display: flex;
+  border-top: 1px solid rgba(251,191,36,0.3);
+
+  background: linear-gradient(
+    135deg,
+    #f5e6c8,
+    #e6c79c,
+    #d4af37
+  );
+
+  color: #1f2937;
+}
     .lb-fstat {
       flex: 1;
       padding: 16px 20px;
@@ -413,36 +428,44 @@ tr.top-3 {
       margin-bottom: 3px;
     }
     .lb-fstat-val {
-      font-family: var(--ff-display);
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--cream);
-      letter-spacing: -.01em;
-    }
+  font-family: var(--ff-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1f2937;
+}
 
     /* ══════════════════════════════════════════════════
        MATCH HISTORY GRID
     ══════════════════════════════════════════════════ */
     .matches-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
-      gap: 24px;
-    }
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
 
-    .match-card {
-      background: var(--cream);
-      border: 1px solid var(--rule);
-      border-radius: 4px;
-      overflow: hidden;
-      box-shadow: 0 2px 0 var(--rule), 0 4px 20px rgba(18,16,14,.05);
-    }
+  .match-card {
+  border-radius: 20px;
+  padding: 18px;
+
+  background: rgba(15,23,42,0.75);
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255,255,255,0.05);
+
+  transition: 0.3s ease;
+}
+.match-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
 
     .match-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 14px 18px;
-      background: var(--ink-2);
+      background: linear-gradient(90deg, var(--blue), var(--turquoise));
+  color: white;
       border-bottom: 1px solid var(--rule);
     }
     .match-head-left { display: flex; align-items: center; gap: 12px; }
@@ -626,8 +649,9 @@ tr.top-3 {
 /* Make table scrollable instead of breaking layout */
 @media (max-width: 700px) {
   .lb-table {
-    min-width: 720px;
-  }
+  width: 100%;
+  table-layout: fixed;
+}
 }
     /* ── Responsive ── */
     @media (max-width: 700px) {
@@ -635,9 +659,10 @@ tr.top-3 {
       .masthead { grid-template-columns: 1fr; }
       .masthead-stats { flex-direction: row; align-items: flex-start; }
       .matches-grid { grid-template-columns: 1fr; }
-      .lb-table th:nth-child(3),
-      .lb-table td:nth-child(3) { display: none; } /* hide Played on mobile */
-    }
+      .lb-table th:nth-child(2),
+.lb-table td:nth-child(2) {
+  width: 30%; /* Player column */
+}
 @media (max-width: 500px) {
   
   h1 {
