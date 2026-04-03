@@ -104,6 +104,17 @@ const MATCHES = [
       { player: "Bengali", score: 559 }
     ]
   }
+  ,{
+  id: "KKR vs SRH",
+  date: "2026-04-02",
+  results: [
+    { player: "Spammer", score: 824.5 },
+    { player: "Baniya", score: 677 },
+    { player: "Fluker", score: 699 },
+    { player: "Muscleman", score: 740 },
+    { player: "Bengali", score: 634 }
+  ]
+}
 ];
   // ── To add a new match, copy the block below and fill it in:
   // ,{
