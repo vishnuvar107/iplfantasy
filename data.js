@@ -116,8 +116,7 @@ const MATCHES = [
     { player: "Muscleman", score: 740 },
     { player: "Bengali", score: 634 }
   ]
-}
-  ,
+},
   {
   id: "CSK vs PBKS",
   date: "2026-04-03",
@@ -130,8 +129,7 @@ const MATCHES = [
     { player: "Baniya", score: 748 },
     { player: "AlluArjun", score: 680.5 }
   ]
-}
-  ,
+},
   {
   id: "DC vs MI",
   date: "2026-04-04",
@@ -143,8 +141,7 @@ const MATCHES = [
     { player: "Kalu", score: 384.5 },
     { player: "AlluArjun", score: 561 }
   ]
-}
-  ,
+},
 {
   id: "GT vs RR",
   date: "2026-04-04",
