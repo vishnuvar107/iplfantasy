@@ -138,7 +138,7 @@
       height: 2px;
       background: var(--turquoise);
     }
-   h1 {
+  h1 {
   font-family: var(--ff-accent);
   font-size: clamp(3rem, 6vw, 5rem);
   font-weight: 400;
@@ -149,7 +149,7 @@
   -webkit-text-fill-color: transparent;
 
   text-shadow: 0 0 40px rgba(56,189,248,0.25);
-}5
+}
     .masthead-deck {
       margin-top: 14px;
       font-size: .95rem;
@@ -404,11 +404,12 @@ tr.top-3 {
     .lb-fstat {
   flex: 1;
   padding: 16px 20px;
-  width: 100%;
+  border-right: 1px solid rgba(0,0,0,0.1);
+}
+
+.lb-fstat:last-child {
   border-right: none;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-    }
-    .lb-fstat:last-child { border-right: none; }
+}
     .lb-fstat-label {
   font-family: var(--ff-mono);
   font-size: .6rem;
@@ -633,77 +634,16 @@ tr.top-3 {
 /* Make table scrollable instead of breaking layout */
 
     /* ── Responsive ── */
-   @media (max-width: 700px) {
-
-  .page-wrap { padding: 0 16px 80px; }
-
-  .masthead { grid-template-columns: 1fr; }
-
-  .masthead-stats { 
-    flex-direction: row; 
-    align-items: flex-start; 
-  }
-
-  .matches-grid { 
-    grid-template-columns: 1fr; 
-  }
-
-  /* ✅ KEY FIX: allow horizontal scroll */
-  .lb-wrap {
-    overflow-x: auto;
-    overflow: hidden;
-    padding-bottom: 10px;
-    -webkit-overflow-scrolling: touch;
-     width: 100%;
-  border-radius: 16px;
-  }
-
-  /* ✅ prevent table from shrinking */
-  .lb-table {
-    min-width: 650px;
-    width: 100%;
-  }
-
-  /* ✅ fix spacing */
-  .lb-table th,
-  .lb-table td {
-    padding: 12px 10px;
-    font-size: 0.85rem;
-    white-space: nowrap;
-  }
-
-  /* ✅ hide less important columns */
-  .lb-table th:nth-child(3),
-  .lb-table td:nth-child(3),
-  .lb-table th:nth-child(7),
-  .lb-table td:nth-child(7) {
-    width: 30%;
-    display: none;
-  }
-}
-@media (max-width: 500px) {
-  
-  h1 {
-  text-shadow: 0 0 25px rgba(37,99,235,0.4);
+   .lb-fstat {
+  flex: 1;
+  padding: 16px 20px;
+  border-right: 1px solid rgba(0,0,0,0.1);
 }
 
-.lb-footer {
-    flex-direction: column; /* ✅ only mobile */
-  }
-
-  .lb-avatar {
-    width: 28px;
-    height: 28px;
-    font-size: .6rem;
-  }
-
-  .lb-name {
-  font-size: 1.1rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: #e2e8f0;
+.lb-fstat:last-child {
+  border-right: none;
 }
-}
+
   </style>
 </head>
 <body>
@@ -734,9 +674,9 @@ tr.top-3 {
 
   <!-- ═══════════════ MAIN LEADERBOARD ═══════════════ -->
   <div class="sec-head" style="margin-top:36px">
-    <span class="section-title">Overall Rankings</span>
-    <span class="section-rule"></span>
-    <span class="section-count" id="lb-count">—</span>
+    <span class="sec-title">Overall Rankings</span>
+    <span class="sec-rule"></span>
+    <span class="sec-count" id="lb-count">—</span>
   </div>
 
   <div class="lb-wrap">
@@ -758,10 +698,10 @@ tr.top-3 {
   </div>
 
   <!-- ═══════════════ MATCH HISTORY ═══════════════ -->
-  <div class="section-head">
-    <span class="section-title">Match History</span>
-    <span class="section-rule"></span>
-    <span class="section-count" id="match-count">—</span>
+  <div class="sec-head">
+    <span class="sec-title">Match History</span>
+    <span class="sec-rule"></span>
+    <span class="sec-count" id="match-count">—</span>
   </div>
 
   <div class="matches-grid" id="matches-grid"></div>
