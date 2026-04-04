@@ -132,25 +132,27 @@ const MATCHES = [
   ]
 },
   {
-  match: "DC vs MI",
-  scores: [
-    { name: "FLUKER", score: 686.5 },
-    { name: "BANIYA", score: 428 },
-    { name: "SPAMMER", score: 458.5 },
-    { name: "BENGALI", score: 412.5 },
-    { name: "KALU", score: 384.5 },
-    { name: "ALLUARJUN", score: 561 }
+  id: "DC vs MI",
+  date: "2026-04-04",
+  results: [
+    { player: "Fluker", score: 686.5 },
+    { player: "Baniya", score: 428 },
+    { player: "Spammer", score: 458.5 },
+    { player: "Bengali", score: 412.5 },
+    { player: "Kalu", score: 384.5 },
+    { player: "AlluArjun", score: 561 }
   ]
 },
-  {
-  match: "GT vs RR",
-  scores: [
-    { name: "FLUKER", score: 965.5 },
-    { name: "BENGALI", score: 951.5 },
-    { name: "ALLUARJUN", score: 944.5 },
-    { name: "BANIYA", score: 940.5 },
-    { name: "SPAMMER", score: 786.5 },
-    { name: "MUSCLEMAN", score: 753 }
+{
+  id: "GT vs RR",
+  date: "2026-04-04",
+  results: [
+    { player: "Fluker", score: 965.5 },
+    { player: "Bengali", score: 951.5 },
+    { player: "AlluArjun", score: 944.5 },
+    { player: "Baniya", score: 940.5 },
+    { player: "Spammer", score: 786.5 },
+    { player: "Muscleman", score: 753 }
   ]
 }
 ];
