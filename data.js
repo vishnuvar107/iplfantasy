@@ -189,6 +189,18 @@ const MATCHES = [
     { player: "Spammer", score: 615.5 },
     { player: "Muscleman", score: 616.5 }
   ]
+},
+  {
+  id: "DC vs GT",
+  date: "2026-04-08",
+  results: [
+    { player: "Fluker", score: 903.5 },
+    { player: "Bengali", score: 909 },
+    { player: "AlluArjun", score: 942 },
+    { player: "Baniya", score: 900 },
+    { player: "Spammer", score: 835 },
+    { player: "Muscleman", score: 978 }
+  ]
 }
 ];
   // ── To add a new match, copy the block below and fill it in:
