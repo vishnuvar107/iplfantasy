@@ -211,6 +211,17 @@ const MATCHES = [
     { player: "Baniya", score: 550.5 },
     { player: "Spammer", score: 601 }
   ]
+},
+  {
+  id: "RR vs RCB",
+  date: "2026-04-10",
+  results: [
+    { player: "Fluker", score: 798 },
+    { player: "Bengali", score: 956 },
+    { player: "AlluArjun", score: 966 },
+    { player: "Baniya", score: 839 },
+    { player: "Spammer", score: 870 }
+  ]
 }
 ];
   // ── To add a new match, copy the block below and fill it in:
