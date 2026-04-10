@@ -201,6 +201,16 @@ const MATCHES = [
     { player: "Spammer", score: 835 },
     { player: "Muscleman", score: 978 }
   ]
+},
+  {
+  id: "KKR vs LSG",
+  date: "2026-04-09",
+  results: [
+    { player: "Fluker", score: 578 },
+    { player: "Bengali", score: 562.5 },
+    { player: "Baniya", score: 550.5 },
+    { player: "Spammer", score: 601 }
+  ]
 }
 ];
   // ── To add a new match, copy the block below and fill it in:
