@@ -246,6 +246,28 @@ const MATCHES = [
     { player: "Spammer", score: 801.5 },
     { player: "Kalu", score: 595 }
   ]
+},
+   {
+  id: "LSG vs GT",
+  date: "2026-04-12",
+  results: [
+    { player: "Fluker", score: 723 },
+    { player: "Bengali", score: 738.5 },
+    { player: "AlluArjun", score: 795 },
+    { player: "Baniya", score: 796 },
+    { player: "Spammer", score: 790 }
+  ]
+},
+   {
+  id: "MI vs RCB",
+  date: "2026-04-12",
+  results: [
+    { player: "Fluker", score: 851 },
+    { player: "Bengali", score: 928.5 },
+    { player: "AlluArjun", score: 950.5 },
+    { player: "Baniya", score: 969 },
+    { player: "Spammer", score: 772 }
+  ]
 }
 ];
   // ── To add a new match, copy the block below and fill it in:
