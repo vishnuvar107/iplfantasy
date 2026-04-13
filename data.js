@@ -268,6 +268,17 @@ const MATCHES = [
     { player: "Baniya", score: 969 },
     { player: "Spammer", score: 772 }
   ]
+},
+   {
+  id: "SRH vs RR",
+  date: "2026-04-13",
+  results: [
+    { player: "Fluker", score: 577.5 },
+    { player: "Bengali", score: 531 },
+    { player: "AlluArjun", score: 831 },
+    { player: "Baniya", score: 530 },
+    { player: "Spammer", score: 536 }
+  ]
 }
 ];
   // ── To add a new match, copy the block below and fill it in:
