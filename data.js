@@ -279,6 +279,18 @@ const MATCHES = [
     { player: "Baniya", score: 530 },
     { player: "Spammer", score: 536 }
   ]
+},
+  {
+  id: "CSK vs KKR",
+  date: "2026-04-14",
+  results: [
+    { player: "Fluker", score: 656.5 },
+    { player: "Bengali", score: 674.5 },
+    { player: "AlluArjun", score: 670.5 },
+    { player: "Baniya", score: 784 },
+    { player: "Spammer", score: 709.5 },
+    { player: "Muscleman", score: 706.5 }
+  ]
 }
 ];
   // ── To add a new match, copy the block below and fill it in:
