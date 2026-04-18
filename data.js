@@ -325,6 +325,30 @@ const MATCHES = [
     { player: "Baniya", score: 896.5 },
     { player: "Spammer", score: 897.5 }
   ]
+},
+  {
+  id: "RCB vs DC",
+  date: "2026-04-18",
+  results: [
+    { player: "Fluker", score: 837.5 },
+    { player: "Bengali", score: 901.5 },
+    { player: "AlluArjun", score: 695.5 },
+    { player: "Baniya", score: 837.5 },
+    { player: "Spammer", score: 664.5 },
+    { player: "Muscleman", score: 688.5 }
+  ]
+},
+  {
+  id: "SRH vs CSK",
+  date: "2026-04-18",
+  results: [
+    { player: "Fluker", score: 822 },
+    { player: "Bengali", score: 803.5 },
+    { player: "AlluArjun", score: 865.5 },
+    { player: "Baniya", score: 869.5 },
+    { player: "Spammer", score: 739.5 },
+    { player: "Muscleman", score: 861 }
+  ]
 }
 ];
   // ── To add a new match, copy the block below and fill it in:
