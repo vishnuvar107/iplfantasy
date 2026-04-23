@@ -397,6 +397,30 @@ const MATCHES = [
     { player: "Spammer", score: 897.5 },
     { player: "Muscleman", score: 915.5 }
   ]
+},
+  {
+  id: "LSG vs RR",
+  date: "2026-04-22",
+  results: [
+    { player: "Fluker", score: 677.5 },
+    { player: "Bengali", score: 624 },
+    { player: "AlluArjun", score: 620 },
+    { player: "Baniya", score: 655 },
+    { player: "Spammer", score: 647 },
+    { player: "Muscleman", score: 647 }
+  ]
+},
+  {
+  id: "MI vs CSK",
+  date: "2026-04-23",
+  results: [
+    { player: "Fluker", score: 636.5 },
+    { player: "Bengali", score: 861.5 },
+    { player: "AlluArjun", score: 941 },
+    { player: "Baniya", score: 778.5 },
+    { player: "Spammer", score: 694.5 },
+    { player: "Muscleman", score: 896.5 }
+  ]
 }
   
 ];
