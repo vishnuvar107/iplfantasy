@@ -1043,12 +1043,44 @@ function buildPowerRankings() {
       ? (top3 / player.played) * 100
       : 0;
 
-    // Aggregate score inverted
-    const aggScore = Math.max(0, 1000 - aggregate);
-
     const aggregateAvg = player.played
   ? aggregate / player.played
   : 0;
+
+  const maxAggregateAvg = Math.max(
+
+  ...stats.map(s => {
+
+    let total = 0;
+    let played = 0;
+
+    MATCHES.forEach(match => {
+
+      const sorted = [...match.results]
+        .sort((a,b) => b.score - a.score);
+
+      const idx = sorted.findIndex(
+        r => r.player === s.name
+      );
+
+      if(idx === -1) return;
+
+      total += (
+        sorted[0].score -
+        sorted[idx].score
+      );
+
+      played++;
+
+    });
+
+    return played ? total / played : 0;
+
+  }),
+
+  1
+
+);
 
     // FINAL POWER RATING
     player.powerRating = (
@@ -1078,8 +1110,11 @@ function buildPowerRankings() {
   +
 
   // Aggregate
-  ((aggScore / 1000)
-    * WEIGHTS.aggregate)
+ // Lower aggregate avg = better
+(
+  (1 - (aggregateAvg / maxAggregateAvg))
+  * WEIGHTS.aggregate
+)
 
   +
 
