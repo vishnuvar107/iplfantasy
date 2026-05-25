@@ -652,6 +652,78 @@ tr.top-3 {
     
     /* Fix leaderboard overflow on mobile */
 
+/* ═════════ POWER RANKINGS ═════════ */
+
+.power-wrap {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(59,130,246,0.12),
+      rgba(168,85,247,0.12)
+    );
+
+  border: 1px solid rgba(139,92,246,0.25);
+
+  box-shadow:
+    0 0 40px rgba(59,130,246,0.12),
+    0 0 80px rgba(168,85,247,0.08);
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.power-wrap::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      120deg,
+      transparent,
+      rgba(255,255,255,0.03),
+      transparent
+    );
+
+  pointer-events: none;
+}
+
+.power-table thead tr {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(59,130,246,0.18),
+      rgba(168,85,247,0.18)
+    );
+}
+
+.power-table tbody tr:hover {
+  background:
+    rgba(168,85,247,0.08);
+
+  transform: scale(1.015);
+}
+
+.power-table .lb-pts {
+
+  font-size: 1.45rem;
+
+  font-weight: 700;
+
+  background:
+    linear-gradient(
+      90deg,
+      #60a5fa,
+      #c084fc
+    );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 /* Make table scrollable instead of breaking layout */
 
     /* ── Responsive ── */
@@ -750,6 +822,30 @@ tr.top-3 {
     </table>
     <div class="lb-footer" id="lb-footer"></div>
   </div>
+<!-- ═══════════════ POWER RANKINGS ═══════════════ -->
+
+<div class="sec-head">
+  <span class="sec-title">Power Rankings</span>
+  <span class="sec-rule"></span>
+  <span class="sec-count" id="pr-count">—</span>
+</div>
+
+<div class="lb-wrap power-wrap">
+    <table class="lb-table power-table">
+  <thead>
+      <tr>
+        <th style="width:52px">#</th>
+        <th>Player</th>
+        <th class="r">PR</th>
+<th class="r">Top 3%</th>
+<th class="r">Aggregate Avg</th>
+<th class="r">Recent Form</th>
+      </tr>
+    </thead>
+
+    <tbody id="pr-body"></tbody>
+  </table>
+</div>
 
   <!-- ═══════════════ MATCH HISTORY ═══════════════ -->
   <div class="sec-head">
@@ -852,6 +948,180 @@ function buildStats() {
     .sort((a, b) => b.points - a.points || b.winRate - a.winRate);
 }
 
+// ───────── POWER RANKING WEIGHTS ─────────
+
+const WEIGHTS = {
+
+  totalPoints: 14,
+
+  wins: 14,
+
+  winRate: 14,
+
+  avgScore: 20,
+
+  aggregate: 8,
+
+  marginWins: 5,
+
+  top2Rate: 10,
+
+  top3Rate: 10,
+
+  recentForm: 5
+
+};
+
+function buildPowerRankings() {
+
+  const stats = buildStats();
+
+  // Maximum values for normalization
+  const maxPoints = Math.max(...stats.map(p => p.points), 1);
+  const maxWins = Math.max(...stats.map(p => p.wins), 1);
+  const maxWR = Math.max(...stats.map(p => p.winRate), 1);
+  const maxAvg = Math.max(...stats.map(p => p.avgScore), 1);
+  const maxPlayed = Math.max(...stats.map(p => p.played), 1);
+
+  // Build advanced metrics
+  stats.forEach(player => {
+
+    let top2 = 0;
+    let top3 = 0;
+    let aggregate = 0;
+    let marginWins = 0;
+    let recentForm = 0;
+
+    const playerMatches = [];
+
+    MATCHES.forEach(match => {
+
+      const sorted = [...match.results]
+        .sort((a,b) => b.score - a.score);
+
+      const index = sorted.findIndex(
+        r => r.player === player.name
+      );
+
+      if(index === -1) return;
+
+      const playerScore = sorted[index].score;
+      const bestScore = sorted[0].score;
+
+      playerMatches.push(playerScore);
+
+      // Top 2
+      if(index <= 1) top2++;
+
+      // Top 3
+      if(index <= 2) top3++;
+
+      // Aggregate difference
+      aggregate += (bestScore - playerScore);
+
+      // Margin of wins
+      if(index === 0 && sorted[1]) {
+        marginWins += (playerScore - sorted[1].score);
+      }
+
+    });
+
+    // Recent form (last 3 matches)
+    const recent = playerMatches.slice(-3);
+
+    if(recent.length) {
+      recentForm =
+        recent.reduce((a,b) => a+b, 0) / recent.length;
+    }
+
+    // Rates
+    const top2Rate = player.played
+      ? (top2 / player.played) * 100
+      : 0;
+
+    const top3Rate = player.played
+      ? (top3 / player.played) * 100
+      : 0;
+
+    // Aggregate score inverted
+    const aggScore = Math.max(0, 1000 - aggregate);
+
+    const aggregateAvg = player.played
+  ? aggregate / player.played
+  : 0;
+
+    // FINAL POWER RATING
+    player.powerRating = (
+
+  // Total Points
+  ((player.points / maxPoints)
+    * WEIGHTS.totalPoints)
+
+  +
+
+  // Wins
+  ((player.wins / maxWins)
+    * WEIGHTS.wins)
+
+  +
+
+  // Win Rate
+  ((player.winRate / maxWR)
+    * WEIGHTS.winRate)
+
+  +
+
+  // Average Score
+  ((player.avgScore / maxAvg)
+    * WEIGHTS.avgScore)
+
+  +
+
+  // Aggregate
+  ((aggScore / 1000)
+    * WEIGHTS.aggregate)
+
+  +
+
+  // Margin Wins
+  ((marginWins / 300)
+    * WEIGHTS.marginWins)
+
+  +
+
+  // Top 2 Rate
+  ((top2Rate / 100)
+    * WEIGHTS.top2Rate)
+
+  +
+
+  // Top 3 Rate
+  ((top3Rate / 100)
+    * WEIGHTS.top3Rate)
+
+  +
+
+  // Recent Form
+  ((recentForm / maxAvg)
+    * WEIGHTS.recentForm)
+
+);
+
+    player.powerRating =
+       Math.round(player.powerRating * 2);
+
+    player.top2Rate = top2Rate;
+    player.top3Rate = top3Rate;
+    player.recentForm = recentForm;
+    player.aggregateAvg = aggregateAvg;
+
+  });
+
+  return stats.sort(
+    (a,b) => b.powerRating - a.powerRating
+  );
+
+}
 /* ═══════════════════════════════════════════════════════
    RENDER — MAIN LEADERBOARD
 ═══════════════════════════════════════════════════════ */
@@ -909,6 +1179,64 @@ function renderLeaderboard(data) {
     el.innerHTML = `<div class="lb-fstat-label">${s.label}</div><div class="lb-fstat-val">${s.val}</div>`;
     footer.appendChild(el);
   });
+}
+
+function renderPowerRankings(data) {
+
+  const tbody = document.getElementById("pr-body");
+
+  tbody.innerHTML = "";
+
+  data.forEach((p, idx) => {
+
+    const rank = idx + 1;
+
+    const tr = document.createElement("tr");
+
+    if(rank === 1) tr.classList.add("top-1");
+    if(rank === 2) tr.classList.add("top-2");
+    if(rank === 3) tr.classList.add("top-3");
+
+    tr.innerHTML = `
+      <td>
+        <span class="lb-rank">
+          ${medal(rank) || rank}
+        </span>
+      </td>
+
+      <td>
+        <div class="lb-player">
+          ${avEl(p.name)}
+          <span class="lb-name">${p.name}</span>
+        </div>
+      </td>
+
+      <td class="r">
+        <span class="lb-pts">
+          ${p.powerRating.toFixed(2)}
+        </span>
+      </td>
+
+      <td class="r">
+  ${p.top3Rate.toFixed(1)}%
+</td>
+
+<td class="r">
+  ${fmtNum(p.aggregateAvg)}
+</td>
+
+<td class="r">
+  ${fmtNum(p.recentForm)}
+</td>
+    `;
+
+    tbody.appendChild(tr);
+
+  });
+
+  document.getElementById("pr-count")
+    .textContent = `${data.length} ranked`;
+
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -1003,8 +1331,14 @@ function renderMatches() {
     `Last loaded: ${new Date().toLocaleString("en-IN")}`;
 
   const stats = buildStats();
-  renderLeaderboard(stats);
-  renderMatches();
+
+renderLeaderboard(stats);
+
+const powerStats = buildPowerRankings();
+
+renderPowerRankings(powerStats);
+
+renderMatches();
 })();
 </script>
 </body>
